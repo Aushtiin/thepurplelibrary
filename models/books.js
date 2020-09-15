@@ -32,9 +32,9 @@ function validateBook(book) {
   return schema.validate(book);
 }
 
-const Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 module.exports = {
-    Book,
-    validateBook,
-}
+  Book,
+  validateBook,
+};
