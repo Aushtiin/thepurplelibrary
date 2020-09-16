@@ -23,7 +23,7 @@ const newGenre = async (req, res) => {
 
 const editGenre = async (req, res) => {
   const { id } = req.params;
-  const genre = await Genre.findByOneandUpdate(
+  const genre = await Genre.findByIdAndUpdate(
     id,
     { name: req.body.name },
     { new: true }
