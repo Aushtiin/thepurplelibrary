@@ -1,6 +1,3 @@
-const catchErrors = (fn) => {
-  return (req, res, next) => {
-    return fn(req, res, next).catch(next);
-  };
-};
+const catchErrors = (fn) => (req, res, next) => fn(req, res, next).catch(next);
+
  module.exports = catchErrors;

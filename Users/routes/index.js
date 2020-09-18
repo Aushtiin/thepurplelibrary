@@ -1,5 +1,5 @@
 const express = require('express');
-const authenticate = require('../../middleware/authenticate');
+const auth = require('../../middleware/authenticate');
 const catchErrors = require('../../middleware/catcherrors');
 const validate = require('../../middleware/validate');
 const { validateUser, validateLogin } = require('../../models/user');
@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get(
     "/me",
-    authenticate,
+    catchErrors(auth),
     catchErrors(getUser)
 )
 

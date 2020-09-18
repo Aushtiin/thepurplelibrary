@@ -32,6 +32,15 @@ const bookSchema = new mongoose.Schema({
 function validateBook(book) {
   const schema = Joi.object({
     title: Joi.string().min(2).required(),
+    genre: Joi.object().required(),
+    numberInStock: Joi.number().min(0).required(),
+    price: Joi.number().min(0).required(),
+  });
+  return schema.validate(book);
+}
+function validatePost(book) {
+  const schema = Joi.object({
+    title: Joi.string().min(2).required(),
     genre: Joi.string().min(3).required(),
     numberInStock: Joi.number().min(0).required(),
     price: Joi.number().min(0).required(),
@@ -44,4 +53,5 @@ const Book = mongoose.model("Book", bookSchema);
 module.exports = {
   Book,
   validateBook,
+  validatePost
 };

@@ -40,10 +40,10 @@ const editBook = async (req, res) => {
   const { title, genre, numberInStock, price } = req.body;
   const book = await Book.findByIdAndUpdate(
     id,
-    title,
+    {title,
     genre,
     numberInStock,
-    price,
+    price},
     { new: true }
   );
   if (!book) return res.status(404).send("Book not found");

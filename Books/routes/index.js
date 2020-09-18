@@ -2,7 +2,7 @@ const express = require('express');
 const catchErrors = require('../../middleware/catcherrors');
 const validate = require('../../middleware/validate');
 const validateObjectId = require('../../middleware/validateObjectId');
-const { validateBook } = require('../../models/books');
+const { validateBook, validatePost } = require('../../models/books');
 const { getAllBooks, getBook, addBook, editBook, deleteBook } = require('../controllers');
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.get(
 
 router.post(
     "/",
-    validate(validateBook),
+    validate(validatePost),
     catchErrors(addBook)
 )
 

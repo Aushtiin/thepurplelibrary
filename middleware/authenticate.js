@@ -3,7 +3,7 @@ const { promisify } = require("util");
 
 const verifyToken = promisify(verify);
 
-const authenticate = async (req, res, next) => {
+const auth = async (req, res, next) => {
   const token = req.headers.authorization;
   if (!token)
     return res
@@ -19,6 +19,4 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-module.exports = {
-    authenticate,
-}
+module.exports = auth

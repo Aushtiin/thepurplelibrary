@@ -3,11 +3,11 @@ const { pick } = require("lodash");
 
 const getUser = async (req, res) => {
   const { _id } = req.decoded;
+  const user = await User.findById({_id}).select('-hash -salt');
 
-  const user = await User.findById(_id).select("-passowrd -salt - hash");
   if (!user) return res.status(404).send("User does not exist");
 
-  res.send(user);
+  res.send(user)
 };
 
 const newUser = async (req, res) => {
@@ -37,7 +37,7 @@ const newUser = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne(email);
+  const user = await User.findOne({ email });
   if (!user) return res.status(400).send("Invalid Login Credentials");
 
   const validPassword = user.verifyPassword(password);
@@ -55,5 +55,5 @@ const login = async (req, res) => {
 module.exports = {
   getUser,
   newUser,
-  login
+  login,
 };

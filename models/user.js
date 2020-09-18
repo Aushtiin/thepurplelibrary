@@ -3,7 +3,7 @@ const Joi = require("@hapi/joi");
 const { randomBytes, pbkdf2Sync } = require("crypto");
 const jwt = require('jsonwebtoken')
 
-const userSchema = new mongoose.model({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
