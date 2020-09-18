@@ -1,6 +1,7 @@
 const express = require("express");
 const catchErrors = require("../../middleware/catcherrors");
 const validate = require("../../middleware/validate");
+const admin = require("../../middleware/admin");
 const validateObjectId = require("../../middleware/validateObjectId");
 const { validateGenre } = require("../../models/genres");
 const { getAllGenres, getGenre, newGenre, editGenre, deleteGenre, } = require("../contollers");
@@ -13,7 +14,7 @@ router.get(
 
 router.get(
   "/:Id", 
-  validateObjectId, 
+  catchErrors(validateObjectId), 
   catchErrors(getGenre)
 );
 
@@ -25,14 +26,15 @@ router.post(
 
 router.put(
   "/:id",
-  validateObjectId,
+  catchErrors(validateObjectId),
   validate(validateGenre),
   catchErrors(editGenre)
 );
 
 router.delete(
   "/:id",
-  validateObjectId,
+  catchErrors(validateObjectId),
+  catchErrors(admin),
   catchErrors(deleteGenre)
 );
 

@@ -13,7 +13,7 @@ router.get(
 
 router.get(
     "/:id",
-    validateObjectId,
+    catchErrors(validateObjectId),
     catchErrors(getBook)
 )
 
@@ -25,14 +25,14 @@ router.post(
 
 router.put(
     "/:id",
-    validateObjectId,
+    catchErrors(validateObjectId),
     validate(validateBook),
     catchErrors(editBook)
 )
 
 router.delete(
     "/:id",
-    validateObjectId,
+    catchErrors(validateObjectId),
     catchErrors(deleteBook)
 )
 
