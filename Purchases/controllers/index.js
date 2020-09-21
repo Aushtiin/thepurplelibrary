@@ -28,16 +28,10 @@ const newPurchase = async (req, res) => {
     },
   });
 
-  try {
-    new Fawn()
-      .save("purchases", purchase)
-      .update("books", { _id: book._id }, { $inc: { numberInStock: -1 } })
-      .run();
+  await purchase.save();
+  await book.update({ _id: book._id }, { $inc: { numberInStock: -1 } });
 
-    res.send(purchase);
-  } catch (ex) {
-    res.status(500).send("something went wrong");
-  }
+  res.send(purchase);
 };
 
 const getPurchase = async (req, res) => {

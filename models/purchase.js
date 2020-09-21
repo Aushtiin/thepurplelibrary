@@ -35,13 +35,11 @@ const purchaseSchema = new mongoose.Schema({
 
       numberInStock: {
         type: Number,
-        required: true,
         min: 0,
       },
 
       price: {
         type: Number,
-        required: true,
         min: 0,
       },
     }),
